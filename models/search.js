@@ -1,8 +1,8 @@
 const mongoose = require("mongoose") 
-const SearchSchema = mongoose.Schema({ 
+const searchSchema = mongoose.Schema({ 
  color: String, 
  size: String, 
  price: Number 
 }) 
  
-module.exports = mongoose.model("Search", SearchSchema) 
+module.exports = mongoose.model("Search", searchSchema) 

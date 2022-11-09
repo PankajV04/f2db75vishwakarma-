@@ -23,7 +23,7 @@ db.once("open", function () {
   console.log("Connection to DB succeeded")
 });
 
-var Search = require("./models/search"); 
+var Search = require("./models/search");
 var resourceRouter = require('./routes/resource')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -48,7 +48,7 @@ app.use('/users', usersRouter);
 app.use('/search', searchRouter);
 app.use('/gridbuild', gridbuildRouter);
 app.use('/selector', selectorRouter);
-app.use('/resource', resourceRouter)
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -69,26 +69,26 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 // We can seed the collection if needed on server start 
-async function recreateDB(){ 
+async function recreateDB() {
   // Delete everything 
-  await Search.deleteMany(); 
- 
-  let instance1 = new Search({color:"Red", size:"large", price:2000}); 
-  instance1.save( function(err,doc) { 
-      if(err) return console.error(err); 
-      console.log("First object saved") 
+  await Search.deleteMany();
 
-  }); let instance2 = new Search({color:"Green", size:"venti", price:1500}); 
-  instance2.save( function(err,doc) { 
-      if(err) return console.error(err); 
-      console.log("Second object saved") 
+  let instance1 = new Search({ color: "Red", size: "large", price: 2000 });
+  instance1.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved")
 
-  }); let instance3 = new Search({color:"Blue", size:"small", price:5900}); 
-  instance3.save( function(err,doc) { 
-      if(err) return console.error(err); 
-      console.log("Third object saved") 
-  }); 
-} 
- 
-let reseed = true; 
-if (reseed) { recreateDB();} 
+  }); let instance2 = new Search({ color: "Green", size: "venti", price: 1500 });
+  instance2.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Second object saved")
+
+  }); let instance3 = new Search({ color: "Blue", size: "small", price: 5900 });
+  instance3.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Third object saved")
+  });
+}
+
+let reseed = true;
+if (reseed) { recreateDB(); } 

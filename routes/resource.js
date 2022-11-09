@@ -10,7 +10,7 @@ var search_controller = require('../controllers/search');
 // GET resources base. 
 router.get('/', api_controller.api); 
  
-/// COSTUME ROUTES /// 
+/// search ROUTES /// 
  
 // POST request for creating a search.  
 router.post('/searchs', search_controller.search_create_post); 
@@ -25,6 +25,6 @@ router.put('/searchs/:id', search_controller.search_update_put);
 router.get('/searchs/:id', search_controller.search_detail); 
  
 // GET request for list of all search items. 
-router.get('/searchs',search_controller.search_list); 
+router.get('/searchs', search_controller.search_list); 
  
-module.exports = router; 
+module.exports = router;
