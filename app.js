@@ -30,6 +30,7 @@ var usersRouter = require('./routes/users');
 var searchRouter = require('./routes/search');
 var gridbuildRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
+const search = require('./models/search');
 
 var app = express();
 
