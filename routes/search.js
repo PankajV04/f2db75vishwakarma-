@@ -15,3 +15,6 @@ var router = express.Router();
 /* GET searchs */ 
 router.get('/', search_controlers.search_view_all_Page ); 
 module.exports = router; 
+
+/* GET detail costume page */ 
+router.get('/detail', search_controlers.search_view_one_Page); 

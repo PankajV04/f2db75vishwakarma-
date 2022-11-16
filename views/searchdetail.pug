@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let searchid = toShow._id 
+  - let search_type = toShow.search_type 
+  - let searchcost = toShow.cost 
+  - let searchsize = toShow.size 
+  div 
+    div.row 
+      div(class='searchAttr mr-3') Search ID is: 
+      div #{searchid} 
+    div.row 
+      div(class='searchAttr mr-3') Search Type is: 
+      div #{search_type} 
+    div.row 
+      div(class='searchAttr mr-3') Search Size is: 
+      div #{searchsize} 
+    div.row 
+      div(class='searchAttr mr-3') Search Cost is: 
+      div #{searchcost} 

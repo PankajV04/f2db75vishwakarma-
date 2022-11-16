@@ -6,8 +6,15 @@ exports.search_list = function(req, res) {
 }; 
  
 // for a specific Search. 
-exports.search_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Search detail: ' + req.params.id); 
+exports.search_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Search.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
  
 // Handle Search create on POST. 
@@ -57,9 +64,9 @@ exports.search_create_post = async function(req, res) {
     // Even though bodies can be in many different formats, we will be picky 
     // and require that it be a json object 
     // {"costume_type":"goat", "cost":12, "size":"large"} 
-    document.search_type = req.body.search_type; 
-    document.cost = req.body.cost; 
+    document.color = req.body.color; 
     document.size = req.body.size; 
+    document.price = req.body.price; 
     try{ 
         let result = await document.save(); 
         res.send(result); 
@@ -68,4 +75,51 @@ exports.search_create_post = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+// Handle Costume update form on PUT. 
+exports.search_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Search.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.color) toUpdate.color = req.body.color; 
+        if(req.body.size) toUpdate.size = req.body.size; 
+        if(req.body.price) toUpdate.price = req.body.price; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    }
+};
+
+// Handle Costume delete on DELETE. 
+exports.search_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Search.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
+
+// Handle a show one view with id specified by query 
+exports.search_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Search.findById( req.query.id) 
+        res.render('searchdetail',  
+{ title: 'Search Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 }; 

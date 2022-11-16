@@ -15,6 +15,7 @@ router.get('/', api_controller.api);
 // POST request for creating a search.  
 router.post('/searchs', search_controller.search_create_post); 
  
+
 // DELETE request to delete search. 
 router.delete('/searchs/:id', search_controller.search_delete); 
  
