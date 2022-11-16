@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let searchid = toShow._id 
+    - let search_type = toShow.color 
+    - let searchcost = toShow.size 
+    - let searchsize = toShow.price 
+    - let actionid = "/resource/searchs/" + searchid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='searchAttr mr-3') Search ID is: 
+        div #{searchid} 
+      div.row 
+        div(class='searchAttr mr-3') Search Color is: 
+        div #{search_type} 
+      div.row 
+        div(class='searchAttr mr-3') Search Size is: 
+        div #{searchsize} 
+      div.row 
+        div(class='searchAttr mr-3') Search Price is: 
+        div #{searchcost} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the search collection 
+      window.location.href='/search' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'  
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/search' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 

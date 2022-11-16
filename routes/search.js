@@ -25,3 +25,6 @@ router.get('/create', search_controlers.search_create_Page);
 /* GET create update page */ 
 router.get('/update', search_controlers.search_update_Page); 
  
+/* GET delete costume page */ 
+router.get('/delete', search_controlers.search_delete_Page); 
+ 
