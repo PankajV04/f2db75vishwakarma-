@@ -18,3 +18,6 @@ module.exports = router;
 
 /* GET detail costume page */ 
 router.get('/detail', search_controlers.search_view_one_Page); 
+
+/* GET create costume page */ 
+router.get('/create', search_controlers.search_create_Page); 

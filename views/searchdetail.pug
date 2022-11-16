@@ -4,19 +4,19 @@ block content
   h1= title 
  
   - let searchid = toShow._id 
-  - let search_type = toShow.search_type 
-  - let searchcost = toShow.cost 
-  - let searchsize = toShow.size 
+  - let search_type = toShow.color 
+  - let searchcost = toShow.size 
+  - let searchsize = toShow.price 
   div 
     div.row 
       div(class='searchAttr mr-3') Search ID is: 
       div #{searchid} 
     div.row 
-      div(class='searchAttr mr-3') Search Type is: 
+      div(class='searchAttr mr-3') Search Color is: 
       div #{search_type} 
     div.row 
-      div(class='searchAttr mr-3') Search Size is: 
+      div(class='searchAttr mr-3') Search price is: 
       div #{searchsize} 
     div.row 
-      div(class='searchAttr mr-3') Search Cost is: 
+      div(class='searchAttr mr-3') Search Size is: 
       div #{searchcost} 
