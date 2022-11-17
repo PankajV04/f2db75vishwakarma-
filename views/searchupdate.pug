@@ -1,8 +1,10 @@
 extends layout 
  
 block content 
-  h1= title 
- 
+  h1= title
+  if(toShow==null)
+    h2 No instance to Detail
+  else
   - let searchid = toShow._id 
   - let search_type = toShow.color 
   - let searchcost = toShow.price 
