@@ -4,12 +4,24 @@ block content
   h1= title
   //- let results=[{color:"Red", size:"large", price:2000},{color:"Green", size:"venti", price:1500},{color:"Blue", size:"small", price:5900}]
   - let plane = results 
+  div(class="container-fluid") 
+  div(class="row m-1") 
+    each planes in plane
+        - let destination = `dispatch(\"/search/update?id=${planes._id}\")` 
+        div(class="row-sm-2", class="m-1") plane is #{planes.color}; size is #{planes.size}; price is #{planes.price} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+   
+  script. 
+    function dispatch(path)
+    { 
+      window.location.href=path 
+    } 
   div(class="container-fluid")
   div(class="row")
-  each value,index in plane
-    div(class="col-sm-2" onclick=`buy(${index})`) Color #{value.color}, Size #{value.size}, Cost #{value.price}
+    each value,index in results
+        div(class="col-sm-2" onclick=`buy(${index})`) Color #{value.color}, Size #{value.size}, Cost #{value.price}
   script.
     function buy(index)
     {
-      alert(`Your purchased Item ${index+1}`)
+      alert(`Your purchased plane ${index+1}`)
     }
