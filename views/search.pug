@@ -3,13 +3,19 @@ extends layout
 block content
   h1= title
   //- let results=[{color:"Red", size:"large", price:2000},{color:"Green", size:"venti", price:1500},{color:"Blue", size:"small", price:5900}]
+  - let Create = `dispatch(\"/search/create\")`
+  button.btn( class="btn-primary ml-1", onclick= Create) Create
   - let plane = results 
   div(class="container-fluid") 
   div(class="row m-1") 
     each planes in plane
-        - let destination = `dispatch(\"/search/update?id=${planes._id}\")` 
+        - let destination = `dispatch(\"/search/update?id=${planes._id}\")`
+        - let detail = `dispatch(\"/search/detail?id=${planes._id}\")`
+        - let Delete = `dispatch(\"/search/delete?id=${planes._id}\")`
         div(class="row-sm-2", class="m-1") plane is #{planes.color}; size is #{planes.size}; price is #{planes.price} 
           button.btn( class="btn-primary ml-1", onclick= destination) Update 
+          button.btn( class="btn-primary ml-1", onclick= detail) Details
+          button.btn( class="btn-primary ml-1", onclick= Delete) Delete
    
   script. 
     function dispatch(path)
